@@ -1,0 +1,27 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "A CRUD example",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "ejs": "^2.5.1",
+    "envs": "^0.1.6",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10",
+    "multer": "^1.2.0",
+    "passport": "^0.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "contributors": [
+    "Luca Leiva",
+    "Santiago Martinez"
+  ],
+  "license": "SEE LICENSE IN ../LICENSE"
+}
