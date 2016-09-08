@@ -10,24 +10,26 @@ const user = new Schema({
         type: String,
         trim: true,
         unique: true,
-        required: true
+        required: true,
     },
     password: {
         type: String,
         trim: true,
-        required: true
+        required: true,
     },
     email: {
         type: String,
         trim: true,
         unique: true,
-        required: true
+        required: true,
     },
     name: {
         type: String,
-        trim: true
+        trim: true,
     },
-    articles: {},
+    articles: {
+        //TODO agregar union con articulo
+    },
 });
 
 //Agrego el esquema a mongoose

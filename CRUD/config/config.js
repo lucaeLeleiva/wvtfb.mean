@@ -7,7 +7,8 @@ const dotenv = require('dotenv').config(),
     _db_url = process.env.DB_URL,
     _db_user = process.env.DB_USER,
     _db_pass = process.env.DB_PASS,
-    _port = process.env.PORT;
+    _host_ip = process.env.IP,
+    _host_port = process.env.PORT;
 
 //Exporto las variables de ambiente.
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     db_url: _db_url,
     db_user: _db_user,
     db_pass: _db_pass,
-    port: _port
+    port: _host_port,
+    ip: _host_ip,
 };
