@@ -1,9 +1,14 @@
-var express=require('express'),
-    mongoose=require('mongoose'),
-    config=require('./config/config.js'),
-    app=express();
+'use strict';
 
-app.listen(config.port,()=>{
-        console.log("Live.");
-    }
-);
+//Importo las librerias configuradas
+const express = require('./config/express.js'),
+    mongoose = require('./config/mongoose.js'),
+    config = require('./config/config.js'),
+    app = express(),
+    db = mongoose();
+
+app.listen(config.port, () => {
+    console.log("Live.");
+});
+
+module.exports = app;

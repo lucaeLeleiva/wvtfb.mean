@@ -1,3 +1,5 @@
 #Ignorara archivos con variables de ambiente
+.env
 
-*.env
+#Ignorara la carpeta con los modulos de node, se debera installar los modulos y actualizar el package.json
+node_modules
