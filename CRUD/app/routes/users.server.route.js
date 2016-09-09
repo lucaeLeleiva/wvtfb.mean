@@ -2,6 +2,10 @@
 
 module.exports = (app)=>{
     const user = require('../controllers/users.server.controller.js');
-    app.get('/user', user.get);
-    app.post('/user', user.post);
+    app.post('/user', user.create);
+    
+    /*
+    TODO manejar los gets de user y los demas post
+    app.get('/user', user.);
+    */
 };
