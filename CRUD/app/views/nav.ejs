@@ -1,5 +1,25 @@
-<nav>
-    <a href='/articles'>Ver articulos</a>
-    <a href='/login'>Login</a>
-    <a href='/register'>Register</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href='/articles'>
+            <img alt="WVTFB" src='../../img/Beer-icon-small.png'>
+          </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href='/login'>Login</a></li>
+            <li><a href='/register'>Register</a></li>
+        </ul>
+    </div>
 </nav>
+
+<!--
+
+<%# if ( user ) { %>
+                <li><h2>Hello <%# = user %> </h2></li>
+                <li><a href="/logout">Logout</a></li>
+            <%# } else { %>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+            <%# } %>
+
+-->

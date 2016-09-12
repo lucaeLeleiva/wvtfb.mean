@@ -3,8 +3,10 @@ const passport = require('passport'),
     User = require('mongoose').model('User');
 
 module.exports = ()=>{
-    passport.use(new LocalStrategy((username, password, done)=>{
-        User.findOne({username: username}, (err, user)=>{
+    passport.use('local', new LocalStrategy({
+                    passReqToCallback : true
+                },(req, username, password, done)=>{
+                User.findOne({username: username}, (err, user)=>{
                 if (err) {
                     return done(err);
                 }

@@ -4,7 +4,9 @@
 const express = require('./config/express.js'),
     config = require('./config/config.js'),
     mongoose = require('./config/mongoose.js'),
+    passport = require('./config/passport'),
     db = mongoose(),
+    _passport = passport(),
     app = express();
 
 app.listen(config.port, () => {
@@ -12,3 +14,5 @@ app.listen(config.port, () => {
 });
 
 module.exports = app;
+
+
