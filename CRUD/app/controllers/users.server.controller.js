@@ -6,25 +6,88 @@ exports.create = (req, res, next)=>{
    const user = new User(req.body);
    user.save( (err)=>{
       if(err){
-         console.log(err);
+         return console.log(err);
       }
       res.json(user);
    });
 };
 
-/*exports.getAll = ((req,res)=>{
-   User.find({}, (err, users)=>{
+exports.getUser = (req, res)=>{
+    res.json(req.user);
+};
+
+exports.update = (req, res)=>{
+    User.findByIdAndUpdate(req.user._id, req.user, (err, query)=>{
+        if(err){
+            return console.log(err);
+        }
+        res.redirect('/user/:'+req.user._id);
+    });
+};
+
+exports.delete = (req, res)=>{
+    User.findByIdAndRemove(req.user._id, (err, query)=>{
+        if(err){
+            return console.log(err);
+        }
+        res.redirect('/');
+    });
+};
+
+exports.getById = (req, res, next, id)=>{
+   User.findOne({_id: id,}, (err, user)=>{
       if(err){
-         console.log(err);
+         return next(err);
       }
-      res.json(users);
+      req.user = user;
+      next();
    });
-});*/
+};
 
-/*exports.get = ('/user',(req,res)=>{
-   res.render('user.ejs'); 
-});*/
+exports.renderLogin = (req, res, next)=>{
+    if (!req.user) {
+        res.render('index', {
+            title: 'Login',
+            content: 'login',
+        });
+    }else{
+        res.redirect('/');    
+    }
+};
 
-/*exports.post = ('/user',(req,res)=>{
-   console.log('post recibido');
-});*/
+exports.renderRegister = (req, res, next)=>{
+    if (!req.user) {
+        res.render('index', {
+            title: 'Register',
+            content: 'register',
+        });
+    }else{
+        res.redirect('/');
+    }
+};
+
+exports.register = (req, res, next)=>{
+    if (!req.user) {
+        const user = new User(req.body);
+        user.provider = 'local';
+        user.save((err)=>{
+            if (err) {
+                console.log(err);
+                return res.redirect('/register');
+            }
+            req.login(user, (err)=>{
+                if (err){
+                    return next(err);
+                }
+                return res.redirect('/');
+            });
+        });
+    }else{
+        return res.redirect('/');
+    }
+};
+
+exports.logout = (req, res)=>{
+    req.logout();
+    res.redirect('/');
+};

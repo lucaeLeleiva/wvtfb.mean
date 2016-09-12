@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <% 'use strict' %>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <%- include nav %>
+        <% if(content!==''){ %>
+        <%- include(content) %>
+        <% } %>
+        <%- include footer %>
+    </body>
+</html>

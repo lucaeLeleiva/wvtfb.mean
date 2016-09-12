@@ -8,7 +8,7 @@ const express = require('./config/express.js'),
     app = express();
 
 app.listen(config.port, () => {
-    console.log("Live.");
+    console.log("Pagina live.");
 });
 
 module.exports = app;
