@@ -8,7 +8,8 @@ module.exports = (app)=>{
         .get(user.getUser)
         .put(user.update)
         .delete(user.delete);
-        
+    
+    //al pedo?    
     app.route('/users')
         .post(user.create);
     
@@ -19,6 +20,7 @@ module.exports = (app)=>{
     app.route('/login')
         .get(user.renderLogin)
         .post(passport.authenticate('local', {
+            failureFlash: true,
             successRedirect: '/',
             failureRedirect: '/login',
         }));

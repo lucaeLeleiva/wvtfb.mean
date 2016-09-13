@@ -1,8 +1,10 @@
 'use strict';
 
+//TODO agregar funcionalidad de encriptado
+
 //Importo mongoose y la funcion de esquemas.
 const mongoose = require('mongoose'),
-    crypto = require('crypto'),
+    //crypto = require('crypto'),
     Schema = mongoose.Schema;
 
 //Creo un nuevo esquema para usuarios.
@@ -33,20 +35,21 @@ const user = new Schema({
     },
 });
 
-user.pre('save', (next)=>{
+/*user.pre('save', (next)=>{
         if (this.password) {
             const md5 = crypto.createHash('md5');
             this.password = md5.update(this.password).digest('hex');
         }
         next();
     }
-);
+);*/
 
-user.methods.authenticate = (password)=>{
-    let md5 = crypto.createHash('md5');
-    md5 = md5.update(password).digest('hex');
+//TODO reever el uso de this y el encriptado
+user.methods.authenticate = (userPass, password)=>{
+    //var md5 = crypto.createHash('md5');
+    //md5 = md5.update(password).digest('hex');
 
-    return this.password === md5;
+    return userPass === password;
 };
 
 user.statics.findUniqueUsername = (username, suffix, callback)=>{

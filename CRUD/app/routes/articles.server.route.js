@@ -8,8 +8,8 @@ module.exports = (app)=>{
         .delete(article.delete)
         .put(article.update);
     app.route('/articles')
-        .get(article.getAll)
-        .post(article.create);
+        .post(article.create)
+        .get(article.getAll);
     
     app.param('articleId', article.getById);
 };

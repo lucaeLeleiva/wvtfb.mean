@@ -13,7 +13,7 @@ module.exports = ()=>{
                 if (!user) {
                     return done(null, false, {message: 'Unknown user'});
                 }
-                if (!user.authenticate(password)) {
+                if (!user.authenticate(user.password, password)) {
                     return done(null, false, {message: 'Invalid password'});
                 }
                 return done(null, user);

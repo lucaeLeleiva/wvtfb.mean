@@ -3,7 +3,9 @@
 const express = require('express'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    passport = require('passport');
+    passport = require('passport'),
+    flash = require('connect-flash');
+
 
 module.exports = ()=>{
     const app = express();
@@ -21,7 +23,7 @@ module.exports = ()=>{
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-
+    app.use(flash());
     
     app.set('views', './app/views');
     app.set('view engine', 'ejs');

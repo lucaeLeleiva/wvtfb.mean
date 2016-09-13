@@ -8,7 +8,7 @@ exports.create = (req, res, next)=>{
         if(err){
             return console.log(err);
         }
-        res.json(article);
+        res.redirect('/articles');
     });
 };
 
@@ -19,18 +19,23 @@ exports.getAll = (req, res)=>{
         }
         res.render('index.ejs',{
             title: 'Articles',
-            content: 'article',
+            content: 'articles',
             articles: query,
+            messages: req.messages ? req.messages : '',
+            user: req.user ? req.user.username : '',
+            id: req.user ? req.user._id : '',
         });
     });
 };
 
 exports.getArticle = (req, res)=>{
-    const article = [req.article];
     res.render('index.ejs',{
         title: 'Article',
         content: 'article',
-        articles: article,
+        articles: req.article,
+        messages: req.messages ? req.messages : '',
+        user: req.user ? req.user.username : '',
+        id: req.user ? req.user._id : '',
     });
 };
 
@@ -63,6 +68,3 @@ exports.getById = (req, res, next, id)=>{
         next();
     });
 };
-
-
-

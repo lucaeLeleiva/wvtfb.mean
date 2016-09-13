@@ -1,0 +1,7 @@
+<% 'use strict' %>
+<% for(var i = 0; i<articles.length; i++){ %>
+    <div class='container-fluid'>
+        <h1><%= articles[i].title %></h1>
+        <a href='../article/<%= articles[i]._id%>'><img src='<%= articles[i].img %>'></a>
+    </div>
+<% } %>

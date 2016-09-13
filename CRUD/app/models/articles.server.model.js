@@ -25,7 +25,7 @@ const article = new Schema({
         //TODO agregar funcion que lleve el control de puntos
     },
     OP:{
-        //TODO agregar union con el usuario
+        //Recibe el id del usuario cuando se hace el post
     },
 });
 
