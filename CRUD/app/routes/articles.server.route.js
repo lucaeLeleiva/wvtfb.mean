@@ -2,6 +2,14 @@
 
 module.exports = (app)=>{
     const article = require('../controllers/articles.server.controller.js');
-    app.get('/article', article.get);
-    app.post('/article', article.post);
+    
+    app.route('/article/:articleId')
+        .get(article.getArticle)
+        .delete(article.delete)
+        .put(article.update);
+    app.route('/articles')
+        .post(article.create)
+        .get(article.getAll);
+    
+    app.param('articleId', article.getById);
 };

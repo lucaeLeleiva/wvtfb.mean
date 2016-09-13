@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href='/articles'>
+            <img alt="WVTFB" src='../../img/Beer-icon-small.png'>
+          </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <% if ( user ) { %>
+                <li><p class="navbar-text">Hello <a href='/user/<%= id %>' class="navbar-link"> <%= user %> </a></p></li>
+                <li><p class="navbar-text"><a href="/logout" class="navbar-link">Logout</a></p></li>
+            <% } else { %>
+                <li><a href="/register" class="navbar-link">Register</a></li>
+                <li><a href="/login" class="navbar-link">Login</a></li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+<% for(var i in messages) { %>
+    <div class="flash text-center">
+        <%= messages[i] %>
+    </div>
+<% } %>

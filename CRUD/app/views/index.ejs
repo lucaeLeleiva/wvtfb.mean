@@ -1,0 +1,10 @@
+<html>
+    <%- include header %>
+    <body>
+        <%- include nav %>
+        <% if(content!==''){ %>
+        <%- include(content) %>
+        <% } %>
+        <%- include footer %>
+    </body>
+</html>

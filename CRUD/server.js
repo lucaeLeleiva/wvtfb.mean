@@ -2,13 +2,15 @@
 
 //Importo las librerias configuradas
 const express = require('./config/express.js'),
-    mongoose = require('./config/mongoose.js'),
     config = require('./config/config.js'),
-    app = express(),
-    db = mongoose();
+    mongoose = require('./config/mongoose.js'),
+    passport = require('./config/passport'),
+    db = mongoose(),
+    _passport = passport(),
+    app = express();
 
 app.listen(config.port, () => {
-    console.log("Live.");
+    console.log("Pagina live.");
 });
 
 module.exports = app;
