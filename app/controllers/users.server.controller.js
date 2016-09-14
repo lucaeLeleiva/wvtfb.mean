@@ -49,17 +49,17 @@ exports.getUser = (req, res)=>{
     }
 };
 
-exports.update = (req, res)=>{
-    User.findByIdAndUpdate(req.user._id, req.user, (err, query)=>{
+exports.update = (req, res, next)=>{
+    User.findByIdAndUpdate(req.user._id, {$set:req.body}, (err, user)=>{
         if(err){
-            return console.log(err);
+            return next(err);
         }
         res.redirect('/user/:'+req.user._id);
     });
 };
 
 exports.delete = (req, res)=>{
-    User.findByIdAndRemove(req.user._id, (err, query)=>{
+    User.findByIdAndRemove(req.user._id, (err)=>{
         if(err){
             return console.log(err);
         }
