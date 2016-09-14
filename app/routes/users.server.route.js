@@ -6,8 +6,8 @@ module.exports = (app)=>{
     
     app.route('/user/:userId')
         .get(user.getUser)
-        .put(user.update)
-        .delete(user.delete);
+        .post(user.update)//Se debe actualizar a put
+        .delete(user.delete);//Admitido en control api pero no hay forma de hacerlo desde la pagina
     
     //al pedo?    
     app.route('/users')

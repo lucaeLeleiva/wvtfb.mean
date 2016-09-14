@@ -57,6 +57,22 @@ exports.delete = (req, res)=>{
     });
 };
 
+exports.getUser_s = (req, res)=>{
+    Article.find({OP: req.user._id.toString()}, (err, query)=>{
+        if(err){
+            return console.log(err);
+        }
+        res.render('index.ejs',{
+            title: 'Articles',
+            content: 'articles',
+            articles: query,
+            messages: req.messages ? req.messages : '',
+            user: req.user ? req.user.username : '',
+            id: req.user ? req.user._id : '',
+        });
+    });
+};
+
 exports.getById = (req, res, next, id)=>{
     Article.findOne({
         _id: id,
