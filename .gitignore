@@ -2,7 +2,7 @@
 .env
 
 #Ignorara la carpeta con los modulos de node, se debera installar los modulos y actualizar el package.json
-node_modules
+node_modules/
 
 #Ignorara la carpeta con jQuery
-public/js/jquery
+public/js/jquery/
