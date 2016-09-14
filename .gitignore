@@ -5,4 +5,4 @@
 node_modules
 
 #Ignorara la carpeta con jQuery
-jquery
+public/js/jquery
