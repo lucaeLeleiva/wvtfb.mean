@@ -1,4 +1,23 @@
-<% 'use strict' %>
+<% if(user){ %>
+    <div class='container'>
+        <form class="form-signin" action="/articles" method="post">
+            <h2 class="form-signin-heading">Post article</h2>
+    
+            <label for="title" class="sr-only">Title</label>
+            <input type="text" id="title" class="form-control"  name="title" placeholder="Title" required autofocus>
+    
+            <label for="img" class="sr-only">Url of the image</label>
+            <input type="url" id="img"  class="form-control" name="img" placeholder="Url of the image" required autofocus>
+    
+            <label for="description" class="sr-only">Description</label>
+            <input type="text" id="description" class="form-control" name="description" placeholder="Description" required>
+            
+            <input type='hidden' id='OP' class="form-control" name='OP' value='<%= id %>'>
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+        </form>
+    </div>
+<% } %>
 <% for(var i = 0; i<articles.length; i++){ %>
     <div class='container-fluid'>
         <h1><%= articles[i].title %></h1>
