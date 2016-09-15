@@ -18,9 +18,13 @@
         </form>
     </div>
 <% } %>
-<% for(var i = 0; i<articles.length; i++){ %>
-    <div class='container-fluid'>
-        <h1><%= articles[i].title %></h1>
-        <a href='../article/<%= articles[i]._id%>'><img src='<%= articles[i].img %>'></a>
+<% for(var i = (articles.length - 1); i >= 0; i--){ %>
+    <div class='container'>
+        <div class="row">
+            <a href='../article/<%= articles[i]._id%>' class="thumbnail">
+                <h1 class='text-center'><%= articles[i].title %></h1>
+                <img src='<%= articles[i].img %>'>
+            </a>
+        </div>
     </div>
 <% } %>

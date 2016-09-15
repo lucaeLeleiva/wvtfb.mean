@@ -7,3 +7,6 @@
 - Agregar comentarios y likes de los posts
 - Ocultar crear posts o moverlo?
 - Crear contenedor de articulos
+
+### Observaciones
+- Al importar usar `$ npm install`
