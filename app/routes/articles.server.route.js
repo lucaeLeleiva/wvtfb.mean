@@ -9,10 +9,19 @@ module.exports = (app)=>{
         .delete(article.delete)//No se controlan metodos put y delete aun
         .put(article.update);//--------------------^--------------------/
     app.route('/articles')
-        .post(article.create)
         .get(article.getAll);
     app.route('/articles/:userId')
         .get(article.getUser_s);
+    app.route('/addComment/:articleId')
+        .post(article.addComment);
+    app.route('/upVote/:articleId')
+        .post(article.upVote);
+    app.route('/downVote/:articleId')
+        .post(article.downVote);
+    app.route('/post')
+        .post(article.create)
+        .get(article.renderPostMenu);
+    
     
     app.param('userId', user.getById);
     app.param('articleId', article.getById);
