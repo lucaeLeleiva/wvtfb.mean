@@ -1,9 +1,36 @@
 <div class='container'>
     <div class="row">
         <div class='thumbnail'>
+            <div class='points'><%= articles.points %></div>
             <h1 class='text-center'><%= articles.title %></h1>
             <img src='<%= articles.img %>'>
-            <p><%= articles.description %></p>
+            <p class='description'><%= articles.description %></p>
+        </div>
+        <% if(user){ %>
+        <div class='container'>
+            <div class='btn-group btn-group-justified' role="group">
+                <form class="btn-group" action='/upVote/<%= articles._id %>' method='post'>
+                    <button class="btn btn-success" type='submit' role="button">UpVote</button>
+                </form>
+                <form class="btn-group" action='/downVote/<%= articles._id %>' method='post'>
+                    <button class="btn btn-danger" type='submit' role="button">DownVote</button>
+                </form>
+            </div>
+        </div>
+        <div class='container'>
+            <form class="form-signin" action='/addComment/<%= articles._id %>' method='post'>
+                <textarea name='comments' rows="4" cols="40" placeholder='Leave your comment here'></textarea>
+                <input type='hidden' name='poster' value='<%= id %>'>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Send Comment</button>
+            </form>
+        </div>
+        <% } %>
+        <div class='container'>
+            <ul class='list-group'>
+            <% for(var i = 0; i < articles.comments.length; i++){ %>
+                <li class='list-group-item'><%= articles.comments[i].comment %></li>
+            <% } %>
+            </ul>
         </div>
     </div>
 </div>

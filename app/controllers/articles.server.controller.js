@@ -30,7 +30,7 @@ exports.getAll = (req, res)=>{
 
 exports.getArticle = (req, res)=>{
     res.render('index.ejs',{
-        title: 'Article',
+        title: req.article.title,
         content: 'article',
         articles: req.article,
         messages: req.messages ? req.messages : '',
@@ -71,6 +71,71 @@ exports.getUser_s = (req, res)=>{
             id: req.user ? req.user._id : '',
         });
     });
+};
+
+exports.addComment = (req, res, next)=>{
+    Article.findByIdAndUpdate(
+        req.article._id,
+        {$push: {"comments": {comment: req.body.comments, poster: req.body.poster,}}},
+        {safe: true, upsert: true, new : true},
+        (err, query)=>{
+            if(err){
+                return next(err);
+            }
+        res.redirect('/article/'+req.article._id);
+    });
+};
+
+exports.upVote = (req, res, next)=>{
+    let points;
+    if(!req.article.points){
+        points = 1;
+    }else{
+        points = ++req.article.points;
+    }
+    Article.findByIdAndUpdate(
+        req.article._id,
+        {points: points},
+        {safe: true, upsert: true, new : true},
+        (err, query)=>{
+            if(err){
+                return next(err);
+            }
+        res.redirect('/article/'+req.article._id);
+    });
+};
+
+exports.downVote = (req, res, next)=>{
+    let points;
+    if(!req.article.points){
+        points = -1;
+    }else{
+        points = --req.article.points;
+    }
+    Article.findByIdAndUpdate(
+        req.article._id,
+        {points: points},
+        {safe: true, upsert: true, new : true},
+        (err, query)=>{
+            if(err){
+                return next(err);
+            }
+        res.redirect('/article/'+req.article._id);
+    });
+};
+
+exports.renderPostMenu = (req, res, next)=>{
+    if (req.user) {
+        res.render('index', {
+            title: 'Post',
+            content: 'post',
+            messages: req.flash('error') || req.flash('info'),
+            user: req.user ? req.user.username : '',
+            id: req.user ? req.user._id : '',
+        });
+    }else{
+        res.redirect('/');    
+    }
 };
 
 exports.getById = (req, res, next, id)=>{
