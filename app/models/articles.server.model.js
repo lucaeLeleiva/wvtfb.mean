@@ -6,27 +6,35 @@ const mongoose = require('mongoose'),
 
 //Creo un nuevo esquema para los articulos.
 const article = new Schema({
-    title:{
+    title: {
         type: String,
         trim: true,
         require: true,
     },
-    img:{
+    img: {
         type: String,
         trim: true,
         require: true,
         unique: true,
     },
-    description:{
+    description: {
         type: String,
         trim: true,
     },
-    points:{
-        //TODO agregar funcion que lleve el control de puntos
+    points: {
+        type: Number,
     },
-    OP:{
+    OP: {
         //Recibe el id del usuario cuando se hace el post
     },
+    comments: [{
+        comment: {
+            type: String,
+        },
+        poster: {
+            type: String,
+        },
+    }]
 });
 
 //Agrego el esquema a mongoose

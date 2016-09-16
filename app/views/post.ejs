@@ -1,0 +1,18 @@
+<div class='container'>
+    <form class="form-signin" action="/post" method="post">
+        <h2 class="form-signin-heading">Post article</h2>
+
+        <label for="title" class="sr-only">Title</label>
+        <input type="text" id="title" class="form-control"  name="title" placeholder="Title" required autofocus>
+
+        <label for="img" class="sr-only">Url of the image</label>
+        <input type="url" id="img"  class="form-control" name="img" placeholder="Url of the image" required autofocus>
+        
+        <label for="description" class="sr-only">Description</label>
+        <textarea name='description' id="description" class="form-control" rows="4" cols="40" placeholder='Description' required></textarea>
+        
+        <input type='hidden' id='OP' class="form-control" name='OP' value='<%= id %>'>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+    </form>
+</div>

@@ -1,30 +1,28 @@
-<% if(user){ %>
-    <div class='container'>
-        <form class="form-signin" action="/articles" method="post">
-            <h2 class="form-signin-heading">Post article</h2>
-    
-            <label for="title" class="sr-only">Title</label>
-            <input type="text" id="title" class="form-control"  name="title" placeholder="Title" required autofocus>
-    
-            <label for="img" class="sr-only">Url of the image</label>
-            <input type="url" id="img"  class="form-control" name="img" placeholder="Url of the image" required autofocus>
-    
-            <label for="description" class="sr-only">Description</label>
-            <input type="text" id="description" class="form-control" name="description" placeholder="Description" required>
-            
-            <input type='hidden' id='OP' class="form-control" name='OP' value='<%= id %>'>
-            
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
-        </form>
-    </div>
-<% } %>
 <% for(var i = (articles.length - 1); i >= 0; i--){ %>
     <div class='container'>
         <div class="row">
-            <a href='../article/<%= articles[i]._id%>' class="thumbnail">
+            <div class='thumbnail'>
+                <div class='points'>
+                    <% if(articles[i].points==null){ %>
+                    0
+                    <% } %>
+                    <%= articles[i].points %>
+                </div>
                 <h1 class='text-center'><%= articles[i].title %></h1>
-                <img src='<%= articles[i].img %>'>
-            </a>
+                <a href='../article/<%= articles[i]._id%>'>
+                    <img src='<%= articles[i].img %>'>
+                </a>
+                <% if(user){ %>
+                <div class='btn-group btn-group-justified' role="group">
+                    <form class="btn-group" action='/upVote/<%= articles[i]._id %>' method='post'>
+                        <button class="btn btn-success" type='submit' role="button">UpVote</button>
+                    </form>
+                    <form class="btn-group" action='/downVote/<%= articles[i]._id %>' method='post'>
+                        <button class="btn btn-danger" type='submit' role="button">DownVote</button>
+                    </form>
+                </div>
+                <% } %>
+            </div>
         </div>
     </div>
 <% } %>
