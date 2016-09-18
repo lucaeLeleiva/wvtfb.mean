@@ -76,14 +76,14 @@ exports.getUser_s = (req, res)=>{
 exports.addComment = (req, res, next)=>{
     Article.findByIdAndUpdate(
         req.article._id,
-        {$push: {"comments": {comment: req.body.comments, poster: req.body.poster,}}},
+        {$push: {"comments": {comment: req.body.comment, poster: req.user._id,}}},
         {safe: true, upsert: true, new : true},
         (err, query)=>{
             if(err){
                 return next(err);
             }
-        res.redirect('/article/'+req.article._id);
     });
+    res.json(req.article.comments);
 };
 
 exports.upVote = (req, res, next)=>{
@@ -101,7 +101,7 @@ exports.upVote = (req, res, next)=>{
             if(err){
                 return next(err);
             }
-        res.redirect('/article/'+req.article._id);
+        res.json(req.article.points);
     });
 };
 
@@ -120,7 +120,7 @@ exports.downVote = (req, res, next)=>{
             if(err){
                 return next(err);
             }
-        res.redirect('/article/'+req.article._id);
+        res.json(req.article.points);
     });
 };
 
