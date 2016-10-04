@@ -6,7 +6,7 @@
 ```javascript
 exports.NameOfMethod = (parameters)=>{
     //Does something (usually with the request)
-    //returns something with the use of the response
+    //Returns something with the use of the response
 };
 ```
 

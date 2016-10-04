@@ -76,33 +76,50 @@ exports.getUser_s = (req, res)=>{
 exports.addComment = (req, res, next)=>{
     Article.findByIdAndUpdate(
         req.article._id,
-        {$push: {"comments": {comment: req.body.comment, poster: req.user._id,}}},
+        {$push: {"comments": {comment: req.body.comment, posterId: req.user._id, posterName: req.user.username, }}},
         {safe: true, upsert: true, new : true},
         (err, query)=>{
             if(err){
                 return next(err);
             }
     });
+    const newArticle = {
+        comment: req.body.comment,
+        posterId: req.user._id,
+        posterName: req.user.username,
+    };
+    req.article.comments.push(newArticle);
     res.json(req.article.comments);
 };
 
 exports.upVote = (req, res, next)=>{
-    let points;
-    if(!req.article.points){
-        points = 1;
-    }else{
-        points = ++req.article.points;
+    let alreadyVote = false;
+    for(let i = 0; i < req.article.voter.length; i++){
+        if(req.article.voter[i].voterId === req.user._id){
+            alreadyVote = true;
+        }
     }
-    Article.findByIdAndUpdate(
-        req.article._id,
-        {points: points},
-        {safe: true, upsert: true, new : true},
-        (err, query)=>{
-            if(err){
-                return next(err);
-            }
-        res.json(req.article.points);
-    });
+    if(!alreadyVote){
+        let points;
+        if(!req.article.points){
+            points = 1;
+        }else{
+            points = ++req.article.points;
+        }
+        Article.findByIdAndUpdate(
+            req.article._id,
+            {
+                points: points,
+                $push: {"voter": { voterId: req.user._id, voterName: req.user.username,},},
+            },
+            {safe: true, upsert: true, new : true},
+            (err, query)=>{
+                if(err){
+                    return next(err);
+                }
+            res.json(req.article.points);
+        }); 
+    }
 };
 
 exports.downVote = (req, res, next)=>{

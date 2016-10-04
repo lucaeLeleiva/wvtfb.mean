@@ -29,10 +29,4 @@ module.exports = (app)=>{
         .get(user.logout);
     
     app.param('userId', user.getById);
-    
-    /*
-    TODO manejar el get generico? 
-        Limitar el get de usuario
-        agregar otras propiedades
-    */
 };

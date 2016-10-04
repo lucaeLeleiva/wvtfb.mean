@@ -24,6 +24,14 @@ const article = new Schema({
     points: {
         type: Number,
     },
+    voter: [{
+        voterId: {
+            type: String,
+        },
+        voterName: {
+            type: String,
+        },
+    }],
     OP: {
         //Recibe el id del usuario cuando se hace el post
     },
@@ -31,9 +39,13 @@ const article = new Schema({
         comment: {
             type: String,
         },
-        poster: {
+        posterId: {
             type: String,
         },
+        posterName: {
+            type: String,
+        },
+        
     }]
 });
 

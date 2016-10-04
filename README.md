@@ -5,12 +5,10 @@
 ## TODO
 - Background as you were outside
 - Mejorar feedback
-- Agregar asincronidad en comentarios
-- Mejorar la actualizacion de usuarios(No obligar a introducir todos los campos, precargarlos con los viejos?)
-- Facilitar ver los posts de otros usuarios
+- Mejorar la actualizacion de usuarios
+- Facilitar ver los posts de otros usuarios(kind of done)
 - Limitar los likes y dislikes a uno por usuario/post
 - Solucionar problemas relacionados a los comentarios
- - Mostrar foto o nombre del usuario
  - Cuando se comenta la publicacion queda primera
  - Cuando se introduce una palabra muy larga sale del espacio asignado
 

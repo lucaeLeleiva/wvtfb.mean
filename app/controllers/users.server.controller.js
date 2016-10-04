@@ -43,6 +43,9 @@ exports.getUser = (req, res)=>{
             messages: req.flash('error') || req.flash('info'),
             user: req.user ? req.user.username : '',
             id: req.user ? req.user._id : '',
+            name: req.user ? req.user.name : '',
+            email: req.user ? req.user.email : '',
+            password: req.user ? req.user.password : '',
         });
     }else{
         res.redirect('/');    
