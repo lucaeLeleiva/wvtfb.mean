@@ -12,7 +12,7 @@ module.exports = (app)=>{
         .get(article.getAll);
     app.route('/articles/:userId')
         .get(article.getUser_s);
-    app.route('/addComment/:articleId')
+    app.route('/addComment/:articleId/:userId')
         .post(article.addComment);
     app.route('/upVote/:articleId')
         .post(article.upVote);
